@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Les praticiens — Le Coin Santé, Toulouse</title>
+  <meta name="description" content="Médecins généralistes, infirmières, pharmaciens, kinésithérapeutes, sage-femme et orthophoniste de la maison de santé Le Coin Santé, route d’Albi à Toulouse.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="conteneur">
+    <a class="marque" href="index.html">
+      <img src="assets/logo.svg" alt="">
+      <span class="marque-texte">LE COIN SANTÉ<small>Maison de santé · Toulouse</small></span>
+    </a>
+    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav" id="nav">
+      <a href="index.html">Accueil</a>
+      <a href="praticiens.html" aria-current="page">Les praticiens</a>
+      <a href="praticiens.html#pharmaciens">Pharmacies</a>
+      <a class="btn btn-plein" href="contact.html">Nous contacter</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu" class="conteneur">
+  <div class="page-tete">
+    <span class="surtitre">19 professionnels de santé</span>
+    <h1>Les praticiens</h1>
+    <p>Choisissez un métier pour voir qui consulte au Coin Santé, à quelle adresse et combien de jours par semaine.</p>
+  </div>
+
+  <div class="onglets" id="onglets" role="tablist" aria-label="Métiers"></div>
+  <section id="panneau" role="tabpanel" aria-live="polite"></section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <div>
+      <a class="marque" href="index.html" style="color:#fff;"><img src="assets/logo.svg" alt=""><span class="marque-texte">LE COIN SANTÉ<small>Maison de santé pluridisciplinaire</small></span></a>
+      <p style="margin-top:14px;font-size:.92rem;">103 route d’Albi, 31200 Toulouse</p>
+    </div>
+    <div>
+      <h3>Le site</h3>
+      <ul><li><a href="index.html">Accueil</a></li><li><a href="praticiens.html#pharmaciens">Pharmacies</a></li><li><a href="contact.html">Contact</a></li></ul>
+    </div>
+    <div>
+      <h3>Nous joindre</h3>
+      <ul><li><a href="mailto:adresse-retiree">adresse-retiree</a></li><li>Urgence vitale : 15 ou 112</li></ul>
+    </div>
+    <div class="pied-bas"><span>© <span id="annee">2026</span> Le Coin Santé</span><a href="mentions-legales.html">Mentions légales</a></div>
+  </div>
+</footer>
+
+<script src="js/praticiens.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

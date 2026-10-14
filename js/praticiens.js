@@ -1,0 +1,139 @@
+/* =============================================================
+   LES PRATICIENS — données et affichage par profession (onglets)
+   Source : liste des professionnels de la structure au 31/12/2025.
+
+   Pour compléter une fiche : telephone, horaires (ex. "Lundi - Vendredi · 9h00 - 17h00")
+   et rdv (lien Doctolib…). Un champ vide n'est simplement pas affiché ;
+   sans lien de rendez-vous, le bouton mène à la page Contact.
+   ============================================================= */
+
+const ADRESSES = {
+  103: "103 route d’Albi, 31200 Toulouse",
+  110: "110 route d’Albi, 31200 Toulouse",
+  160: "160 route d’Albi, 31200 Toulouse",
+  164: "164 route d’Albi, 31200 Toulouse",
+};
+
+const PROFESSIONS = [
+  { cle: "medecins", nom: "Médecins généralistes", court: "Médecins", icone: "stetho",
+    intro: "Consultations de médecine générale, suivi au long cours, prévention. Nos médecins accueillent aussi des internes en formation." },
+  { cle: "infirmiers", nom: "Infirmières diplômées d’État libérales", court: "Infirmières", icone: "seringue",
+    intro: "Soins à domicile et au cabinet : pansements, injections, prises de sang, suivi des traitements." },
+  { cle: "pharmaciens", nom: "Pharmaciens", court: "Pharmaciens", icone: "pharmacie",
+    intro: "Délivrance des médicaments, conseils, vaccinations et accompagnement des traitements, en lien avec les médecins de la maison de santé." },
+  { cle: "kines", nom: "Masseurs-kinésithérapeutes", court: "Kinés", icone: "kine",
+    intro: "Rééducation, kinésithérapie respiratoire, prise en charge des douleurs et des suites de blessures." },
+  { cle: "sages-femmes", nom: "Sage-femme", court: "Sage-femme", icone: "bebe",
+    intro: "Suivi de grossesse, préparation à la naissance, suivi gynécologique de prévention et rééducation périnéale." },
+  { cle: "orthophonistes", nom: "Orthophoniste", court: "Orthophoniste", icone: "parole",
+    intro: "Bilans et rééducation du langage, de la parole, de la voix et de la déglutition, chez l’enfant comme chez l’adulte." },
+];
+
+const PRATICIENS = [
+  // Médecins généralistes (maîtres de stage)
+  { profession: "medecins", nom: "DAMASE", prenom: "Luc", adresse: 103, jours: 4, stage: true },
+  { profession: "medecins", nom: "FAJADET", prenom: "Guillaume", adresse: 103, jours: 4, stage: true },
+  { profession: "medecins", nom: "JAMBU", prenom: "Christelle", adresse: 103, jours: 4, stage: true },
+  { profession: "medecins", nom: "LATIL", prenom: "Marie", adresse: 103, jours: 3, stage: true },
+  { profession: "medecins", nom: "PLARD", prenom: "Carine", adresse: 160, jours: 4, stage: true },
+  { profession: "medecins", nom: "VERGE-BRIAN", prenom: "Philippe", adresse: 103, jours: 4, stage: true },
+  // Infirmières
+  { profession: "infirmiers", nom: "BOIVERT", prenom: "Agathe", adresse: 103, jours: 1.5, badge: "Infirmière Asalée" },
+  { profession: "infirmiers", nom: "BOLDODUCK", prenom: "Malala", adresse: 103, jours: 5 },
+  { profession: "infirmiers", nom: "CHARIFOU", prenom: "Virginie", adresse: 103, jours: 5 },
+  { profession: "infirmiers", nom: "GBEDO", prenom: "Mélissa", adresse: 103, jours: 5 },
+  { profession: "infirmiers", nom: "SIMON LOPES", prenom: "Lucie", adresse: 103, jours: 1.5 },
+  { profession: "infirmiers", nom: "SIRAT VERDIE", prenom: "Marielle", adresse: 103, jours: 5 },
+  // Pharmaciens
+  { profession: "pharmaciens", nom: "PEYROTAU", prenom: "Elisabeth", titre: "Pharmacienne", adresse: 103, jours: 5.5 },
+  { profession: "pharmaciens", nom: "LARRIEU-MANAN", prenom: "Damien", titre: "Pharmacien", adresse: 110, jours: 5 },
+  // Kinésithérapeutes
+  { profession: "kines", nom: "DELGAL", prenom: "Patrick", adresse: 160, jours: 5 },
+  { profession: "kines", nom: "DI BIAGIO", prenom: "Gabriele", adresse: 160, jours: 5 },
+  { profession: "kines", nom: "LELONG", prenom: "Denis", adresse: 103, jours: 5 },
+  // Sage-femme
+  { profession: "sages-femmes", nom: "COUVEZ", prenom: "Agathe", adresse: 103, jours: 5 },
+  // Orthophoniste
+  { profession: "orthophonistes", nom: "SERVAT", prenom: "Clara", adresse: 164, jours: 5 },
+].map((p) => ({ telephone: "", horaires: "", rdv: "", ...p }));
+
+/* ===== Icônes (traits, couleur héritée) ===== */
+const ICONES = {
+  stetho: '<path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v2a5 5 0 0 0 10 0v-3"/><circle cx="21" cy="11" r="2"/>',
+  seringue: '<path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3a2.4 2.4 0 0 1-3.4 0l-.6-.6a2.4 2.4 0 0 1 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/>',
+  pharmacie: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 7v10M7 12h10"/>',
+  kine: '<circle cx="12" cy="4.5" r="2"/><path d="M12 7v6l-3 7M12 13l3 7M7 10h10"/>',
+  bebe: '<circle cx="12" cy="8" r="4"/><path d="M6 21a6 6 0 0 1 12 0"/><path d="M10.5 8h.01M13.5 8h.01"/>',
+  parole: '<path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>',
+  lieu: '<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
+  tel: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
+  horloge: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  calendrier: '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',
+};
+const icone = (n, taille = 18) =>
+  `<svg class="ico" width="${taille}" height="${taille}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONES[n] || ""}</svg>`;
+
+const ech = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const presence = (j) => `${String(j).replace(".", ",")} jour${j > 1 ? "s" : ""} de présence par semaine`;
+
+function carte(p, prof) {
+  const initiales = (p.prenom[0] + p.nom[0]).toUpperCase();
+  const lienRdv = p.rdv || `contact.html?objet=rdv&praticien=${encodeURIComponent(p.prenom + " " + p.nom)}`;
+  const badges = [
+    p.stage ? '<span class="badge">Maître de stage</span>' : "",
+    p.badge ? `<span class="badge">${ech(p.badge)}</span>` : "",
+  ].join("");
+  return `
+    <article class="praticien" data-profession="${prof.cle}">
+      <div class="praticien-tete">
+        <div class="avatar" aria-hidden="true">${initiales}</div>
+        <div>
+          <h3 class="praticien-nom"><span class="nom">${ech(p.nom)}</span> ${ech(p.prenom)}</h3>
+          <p class="praticien-metier">${ech(p.titre || prof.court.replace(/s$/, ""))}</p>
+        </div>
+      </div>
+      ${badges ? `<div class="badges">${badges}</div>` : ""}
+      <ul class="praticien-infos">
+        <li>${icone("lieu")}<span>${ech(ADRESSES[p.adresse])}</span></li>
+        ${p.telephone ? `<li>${icone("tel")}<a href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${ech(p.telephone)}</a></li>` : ""}
+        <li>${icone("horloge")}<span>${ech(p.horaires || presence(p.jours))}</span></li>
+      </ul>
+      <a class="btn btn-contour" href="${ech(lienRdv)}"${p.rdv ? ' target="_blank" rel="noopener"' : ""}>${icone("calendrier", 16)} Prendre rendez-vous</a>
+    </article>`;
+}
+
+function afficherPraticiens(cle) {
+  const prof = PROFESSIONS.find((x) => x.cle === cle) || PROFESSIONS[0];
+  document.querySelectorAll(".onglet").forEach((b) => {
+    const actif = b.dataset.cle === prof.cle;
+    b.classList.toggle("actif", actif);
+    b.setAttribute("aria-selected", actif ? "true" : "false");
+  });
+  const liste = PRATICIENS.filter((p) => p.profession === prof.cle);
+  document.getElementById("panneau").innerHTML = `
+    <div class="panneau-tete">
+      <span class="panneau-icone">${icone(prof.icone, 26)}</span>
+      <div>
+        <h2>${ech(prof.nom)}</h2>
+        <p>${ech(prof.intro)}</p>
+      </div>
+    </div>
+    <div class="grille-praticiens">${liste.map((p) => carte(p, prof)).join("")}</div>`;
+  if (location.hash !== "#" + prof.cle) history.replaceState(null, "", "#" + prof.cle);
+}
+
+function initPraticiens() {
+  const barre = document.getElementById("onglets");
+  barre.innerHTML = PROFESSIONS.map((p) => {
+    const n = PRATICIENS.filter((x) => x.profession === p.cle).length;
+    return `<button class="onglet" role="tab" data-cle="${p.cle}" aria-controls="panneau">${icone(p.icone)}<span>${ech(p.court)}</span><span class="compte">${n}</span></button>`;
+  }).join("");
+  barre.addEventListener("click", (e) => {
+    const b = e.target.closest(".onglet");
+    if (b) afficherPraticiens(b.dataset.cle);
+  });
+  afficherPraticiens(location.hash.slice(1));
+  window.addEventListener("hashchange", () => afficherPraticiens(location.hash.slice(1)));
+}
+
+if (document.getElementById("onglets")) initPraticiens();
