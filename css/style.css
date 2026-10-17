@@ -49,8 +49,9 @@ p { margin: 0 0 1em; }
 }
 .entete .conteneur { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 .marque { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--encre); }
-.marque img { width: 42px; height: 42px; }
-.marque-texte { font-family: "Outfit", sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: .02em; color: var(--orange); line-height: 1; }
+.marque img { height: 42px; width: auto; }
+.marque-pied img { height: 96px; }
+.marque-texte { font-family: "Outfit", sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: .02em; color: #9A3D29; line-height: 1; } /* couleur du logo */
 .marque-texte small { display: block; font-weight: 500; font-size: .7rem; letter-spacing: 0; color: var(--encre-douce); margin-top: 3px; }
 .nav { display: flex; gap: 6px; align-items: center; }
 .nav a { text-decoration: none; color: var(--encre); font-weight: 500; padding: 8px 14px; border-radius: 999px; }

@@ -15,7 +15,8 @@ Tout est dans `js/praticiens.js`, tableau `PRATICIENS`. Pour chaque personne, on
 - `rdv: "https://www.doctolib.fr/..."` (sinon « Prendre rendez-vous » mène à la page Contact)
 
 ## À compléter avant la mise en ligne
-- [ ] Logo définitif (actuellement redessiné d'après la brochure : `assets/logo.svg`) et nom de domaine.
+- [x] Logo définitif (`assets/img/logo.png` ; déclinaisons : `logo-symbole.png` en-tête, `logo-complet-blanc.png` pied de page, `favicon.png`)
+- [ ] Nom de domaine.
 - [ ] Téléphone, horaires et lien de rendez-vous de chaque praticien (`js/praticiens.js`).
 - [ ] Horaires et téléphone des pharmacies (103 et 110 route d'Albi).
 - [ ] Photos des praticiens si souhaité (aujourd'hui : initiales).
