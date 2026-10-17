@@ -2,18 +2,18 @@
    Le Coin Santé — charte de la brochure : orange + bleu sur crème
    ============================================================= */
 :root {
-  --orange: #F2541B;
-  --orange-fonce: #C94310;
-  --orange-pale: #FDE3D7;
-  --bleu: #0B3FD6;
-  --bleu-pale: #E6ECFC;
+  --orange: #B4472F;
+  --orange-fonce: #8F3824;
+  --orange-pale: #F6E1D8;
+  --bleu: #7A2E1F;
+  --bleu-pale: #F3E4DD;
   --creme: #FBF2EC;
   --surface: #FFFFFF;
-  --encre: #1E2230;
-  --encre-douce: #555B6E;
+  --encre: #2B1C17;
+  --encre-douce: #6B5852;
   --trait: #EBDDD3;
   --rayon: 18px;
-  --ombre: 0 10px 30px rgba(120, 60, 30, 0.08);
+  --ombre: 0 10px 30px rgba(110, 45, 30, 0.10);
   --largeur: 1140px;
 }
 
@@ -58,6 +58,8 @@ p { margin: 0 0 1em; }
 .nav a:hover { background: var(--orange-pale); }
 .nav a[aria-current="page"] { color: var(--orange-fonce); background: var(--orange-pale); }
 .nav .btn { margin-left: 6px; }
+.nav a.btn-plein, .nav a.btn-plein[aria-current="page"] { color: #fff; background: var(--orange); }
+.nav a.btn-plein:hover { background: var(--orange-fonce); }
 .burger { display: none; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--encre); }
 
 /* ===== Boutons ===== */
@@ -111,7 +113,7 @@ p { margin: 0 0 1em; }
 .metier h3 { margin-bottom: 2px; }
 .metier p { margin: 0; color: var(--encre-douce); font-size: .9rem; }
 .metier.mis-en-avant { background: var(--orange); color: #fff; border-color: var(--orange); }
-.metier.mis-en-avant p { color: #FFE6DA; }
+.metier.mis-en-avant p { color: #F8E4DA; }
 .metier.mis-en-avant .pastille { background: rgba(255,255,255,.18); color: #fff; }
 
 .deux-colonnes { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
@@ -124,7 +126,7 @@ p { margin: 0 0 1em; }
 
 .bande-pro { background: var(--bleu); color: #fff; border-radius: 28px; padding: 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 30px; align-items: center; }
 .bande-pro h2 { color: #fff; }
-.bande-pro p { color: #DCE4FF; margin: 0; }
+.bande-pro p { color: #F6E1D8; margin: 0; }
 .bande-pro .actions { display: flex; justify-content: flex-end; }
 
 .acces { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; }
@@ -188,13 +190,13 @@ p { margin: 0 0 1em; }
 .message-envoi.visible { display: block; }
 
 /* ===== Pied de page ===== */
-.pied { background: var(--encre); color: #C9CDD8; padding: 48px 0 28px; margin-top: 30px; }
+.pied { background: var(--encre); color: #DCCBC3; padding: 48px 0 28px; margin-top: 30px; }
 .pied .conteneur { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 30px; }
 .pied h3 { color: #fff; font-size: 1rem; }
 .pied a { color: #fff; }
 .pied ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: .92rem; }
-.pied .marque-texte small { color: #9AA0B2; }
-.pied-bas { grid-column: 1 / -1; border-top: 1px solid #343a4d; padding-top: 18px; font-size: .82rem; color: #8E94A6; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.pied .marque-texte small { color: #B39E95; }
+.pied-bas { grid-column: 1 / -1; border-top: 1px solid #4A342D; padding-top: 18px; font-size: .82rem; color: #A48F86; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
 
 /* ===== Responsive ===== */
 @media (max-width: 920px) {
