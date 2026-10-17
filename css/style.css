@@ -93,7 +93,7 @@ p { margin: 0 0 1em; }
 .hero-carte span { font-size: .85rem; color: var(--encre-douce); }
 
 .chiffres { padding: 34px 0 10px; }
-.chiffres .conteneur { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.chiffres .conteneur { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .chiffre { background: var(--surface); border-radius: var(--rayon); padding: 18px 20px; border: 1px solid var(--trait); }
 .chiffre b { display: block; font-family: "Outfit", sans-serif; font-size: 2.1rem; color: var(--orange); line-height: 1; }
 .chiffre span { color: var(--encre-douce); font-size: .92rem; }
@@ -202,7 +202,7 @@ p { margin: 0 0 1em; }
 @media (max-width: 920px) {
   .hero .conteneur, .deux-colonnes, .acces, .bande-pro, .contact { grid-template-columns: 1fr; }
   .metiers { grid-template-columns: 1fr 1fr; }
-  .chiffres .conteneur { grid-template-columns: 1fr 1fr; }
+  .chiffres .conteneur { grid-template-columns: 1fr; }
   .contact-visuel { margin: 20px 0 0; }
   .bande-pro .actions { justify-content: flex-start; }
   .hero-carte { left: 12px; }
