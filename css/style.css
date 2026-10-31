@@ -169,6 +169,11 @@ p { margin: 0 0 1em; }
 .praticien-infos li { display: flex; gap: 10px; align-items: flex-start; }
 .praticien-infos .ico { color: var(--orange); flex: none; margin-top: 2px; }
 .praticien .btn { margin-top: auto; align-self: flex-start; padding: 9px 18px; }
+.praticien-sous-titre { margin: 0 0 6px; font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bleu); }
+.praticien-specialites ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.praticien-specialites li { font-size: .82rem; color: var(--bleu); background: var(--bleu-pale); border-radius: 999px; padding: 4px 11px; }
+.praticien-note { display: flex; gap: 10px; align-items: flex-start; margin: 0; font-size: .9rem; font-style: italic; }
+.praticien-note .ico { color: var(--orange); flex: none; margin-top: 2px; }
 
 /* ===== Contact ===== */
 .contact { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; align-items: center; padding-bottom: 70px; }

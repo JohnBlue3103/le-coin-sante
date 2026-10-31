@@ -3,8 +3,10 @@
    Source : liste des professionnels de la structure au 31/12/2025.
 
    Pour compléter une fiche : telephone, horaires (ex. "Lundi - Vendredi · 9h00 - 17h00")
-   et rdv (lien Doctolib…). Un champ vide n'est simplement pas affiché ;
+   et rdv (lien Doctolib, Perfactive…). Un champ vide n'est simplement pas affiché ;
    sans lien de rendez-vous, le bouton mène à la page Contact.
+   Autres champs facultatifs : rdvTel: true (rendez-vous uniquement par téléphone : le bouton appelle le numéro),
+   entree (accès à préciser), specialites (liste), note (phrase libre).
    ============================================================= */
 
 const ADRESSES = {
@@ -38,7 +40,8 @@ const PRATICIENS = [
   { profession: "medecins", nom: "PLARD", prenom: "Carine", adresse: 160, jours: 4, stage: true },
   { profession: "medecins", nom: "VERGE-BRIAN", prenom: "Philippe", adresse: 103, jours: 4, stage: true },
   // Infirmières
-  { profession: "infirmiers", nom: "BOIVERT", prenom: "Agathe", adresse: 103, jours: 1.5, badge: "Infirmière Asalée" },
+  { profession: "infirmiers", nom: "BOIVERT", prenom: "Agathe", adresse: 103, jours: 1.5, badge: "Infirmière Asalée",
+    titre: "Cabinet infirmier Agathe Boivert", telephone: "06 28 40 68 53", rdvTel: true },
   { profession: "infirmiers", nom: "BOLDODUCK", prenom: "Malala", adresse: 103, jours: 5 },
   { profession: "infirmiers", nom: "CHARIFOU", prenom: "Virginie", adresse: 103, jours: 5 },
   { profession: "infirmiers", nom: "GBEDO", prenom: "Mélissa", adresse: 103, jours: 5 },
@@ -49,12 +52,23 @@ const PRATICIENS = [
   { profession: "pharmaciens", nom: "LARRIEU-MANAN", prenom: "Damien", titre: "Pharmacien", adresse: 110, jours: 5 },
   // Kinésithérapeutes
   { profession: "kines", nom: "DELGAL", prenom: "Patrick", adresse: 160, jours: 5 },
-  { profession: "kines", nom: "DI BIAGIO", prenom: "Gabriele", adresse: 160, jours: 5 },
+  { profession: "kines", nom: "DI BIAGIO", prenom: "Gabriele", adresse: 160, jours: 5, telephone: "05 61 26 09 87", rdvTel: true },
   { profession: "kines", nom: "LELONG", prenom: "Denis", adresse: 103, jours: 5 },
   // Sage-femme
   { profession: "sages-femmes", nom: "COUVEZ", prenom: "Agathe", adresse: 103, jours: 5 },
   // Orthophoniste
-  { profession: "orthophonistes", nom: "SERVAT", prenom: "Clara", adresse: 164, jours: 5 },
+  { profession: "orthophonistes", nom: "SERVAT", prenom: "Clara", adresse: 164, jours: 5,
+    telephone: "07 83 95 73 34", rdv: "https://perfactive.fr/orthophoniste/toulouse/clara-servat",
+    entree: "Entrée du cabinet : 6 rue Yves Prépognot",
+    specialites: [
+      "Troubles oro-myo-fonctionnels (ventilation buccale, posture linguale…)",
+      "Langage écrit",
+      "Neurologie (AVC, maladies neurodégénératives)",
+      "Bégaiement",
+      "Voix",
+      "Oralité",
+    ],
+    note: "Clara exerce avec sa petite chienne Tahia, un bichon frisé qui ne saute pas et n’aboie pas." },
 ].map((p) => ({ telephone: "", horaires: "", rdv: "", ...p }));
 
 /* ===== Icônes (traits, couleur héritée) ===== */
@@ -67,6 +81,8 @@ const ICONES = {
   parole: '<path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>',
   lieu: '<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
   tel: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
+  porte: '<path d="M5 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17"/><path d="M3 21h18"/><path d="M12.5 12h.01"/>',
+  patte: '<circle cx="7" cy="9" r="1.7"/><circle cx="11" cy="6" r="1.7"/><circle cx="15" cy="6" r="1.7"/><circle cx="19" cy="9" r="1.7"/><path d="M8 17c0-3 2-5 5.5-5S19 14 19 17c0 2-2 3-4 2-1.5-.7-2.5-.7-4 0-2 1-3 0-3-2z"/>',
   horloge: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   calendrier: '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',
 };
@@ -75,6 +91,14 @@ const icone = (n, taille = 18) =>
 
 const ech = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const presence = (j) => `${String(j).replace(".", ",")} jour${j > 1 ? "s" : ""} de présence par semaine`;
+
+/** Rendez-vous : lien de prise de rendez-vous, appel direct (rdvTel) ou page Contact. */
+function boutonRdv(p, lienRdv) {
+  if (p.rdvTel && p.telephone) {
+    return `<a class="btn btn-contour" href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${icone("tel", 16)} Prendre rendez-vous au ${ech(p.telephone)}</a>`;
+  }
+  return `<a class="btn btn-contour" href="${ech(lienRdv)}"${p.rdv ? ' target="_blank" rel="noopener"' : ""}>${icone("calendrier", 16)} Prendre rendez-vous</a>`;
+}
 
 function carte(p, prof) {
   const initiales = (p.prenom[0] + p.nom[0]).toUpperCase();
@@ -95,10 +119,13 @@ function carte(p, prof) {
       ${badges ? `<div class="badges">${badges}</div>` : ""}
       <ul class="praticien-infos">
         <li>${icone("lieu")}<span>${ech(ADRESSES[p.adresse])}</span></li>
+        ${p.entree ? `<li>${icone("porte")}<span>${ech(p.entree)}</span></li>` : ""}
         ${p.telephone ? `<li>${icone("tel")}<a href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${ech(p.telephone)}</a></li>` : ""}
         <li>${icone("horloge")}<span>${ech(p.horaires || presence(p.jours))}</span></li>
       </ul>
-      <a class="btn btn-contour" href="${ech(lienRdv)}"${p.rdv ? ' target="_blank" rel="noopener"' : ""}>${icone("calendrier", 16)} Prendre rendez-vous</a>
+      ${p.specialites ? `<div class="praticien-specialites"><p class="praticien-sous-titre">Prend en charge</p><ul>${p.specialites.map((x) => `<li>${ech(x)}</li>`).join("")}</ul></div>` : ""}
+      ${p.note ? `<p class="praticien-note">${icone("patte", 16)}<span>${ech(p.note)}</span></p>` : ""}
+      ${boutonRdv(p, lienRdv)}
     </article>`;
 }
 
