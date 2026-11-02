@@ -57,7 +57,7 @@ const PRATICIENS = [
   // Sage-femme
   { profession: "sages-femmes", nom: "COUVEZ", prenom: "Agathe", adresse: 103, jours: 5 },
   // Orthophoniste
-  { profession: "orthophonistes", nom: "SERVAT", prenom: "Clara", adresse: 164, jours: 5,
+  { profession: "orthophonistes", nom: "SERVAT", prenom: "Clara", adresse: 164, jours: 4, horaires: "4 jours de présence par semaine, du lundi au jeudi",
     telephone: "07 83 95 73 34", rdv: "https://perfactive.fr/orthophoniste/toulouse/clara-servat",
     entree: "Entrée du cabinet : 6 rue Yves Prépognot",
     specialites: [
