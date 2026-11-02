@@ -176,7 +176,7 @@ p { margin: 0 0 1em; }
 .praticien-note .ico { color: var(--orange); flex: none; margin-top: 2px; }
 
 /* ===== Contact ===== */
-.contact { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; align-items: center; padding-bottom: 70px; }
+.contact { padding-bottom: 20px; }
 .formulaire { background: var(--surface); border-radius: 28px; padding: 34px; box-shadow: var(--ombre); position: relative; z-index: 1; border: 1px solid var(--trait); }
 .champ { display: grid; gap: 6px; margin-bottom: 16px; }
 .champ label { font-weight: 600; font-size: .9rem; }
@@ -187,9 +187,8 @@ p { margin: 0 0 1em; }
 .champ input:focus, .champ textarea:focus, .champ select:focus { outline: none; border-color: var(--bleu); background: #fff; }
 .champ textarea { min-height: 130px; resize: vertical; }
 .note-form { font-size: .82rem; color: var(--encre-douce); margin-top: 12px; }
-.contact-visuel { margin-left: -40px; }
-.contact-visuel img { border-radius: 28px; aspect-ratio: 4 / 3.2; object-fit: cover; width: 100%; }
-.contact-infos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 26px 0 40px; }
+.contact-visuel img { border-radius: 28px; aspect-ratio: 16 / 7; object-fit: cover; width: 100%; }
+.contact-infos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 26px 0 40px; }
 .contact-infos .chiffre b { font-size: 1rem; color: var(--encre); font-family: "Inter", sans-serif; }
 .message-envoi { display: none; margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: var(--bleu-pale); color: var(--bleu); font-size: .9rem; }
 .message-envoi.visible { display: block; }
@@ -208,7 +207,6 @@ p { margin: 0 0 1em; }
   .hero .conteneur, .deux-colonnes, .acces, .bande-pro, .contact { grid-template-columns: 1fr; }
   .metiers { grid-template-columns: 1fr 1fr; }
   .chiffres .conteneur { grid-template-columns: 1fr; }
-  .contact-visuel { margin: 20px 0 0; }
   .bande-pro .actions { justify-content: flex-start; }
   .hero-carte { left: 12px; }
   .pied .conteneur { grid-template-columns: 1fr; }

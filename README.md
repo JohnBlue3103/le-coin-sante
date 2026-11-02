@@ -5,7 +5,7 @@ Site statique (HTML, CSS, JavaScript), sans outil de construction : il suffit d'
 ## Pages
 - `index.html` : accueil (présentation, métiers, lieu, appel aux professionnels, accès et plan).
 - `praticiens.html` : les praticiens par métier, avec un onglet par profession. Le lien direct vers un onglet se fait avec `praticiens.html#pharmaciens`, `#medecins`, `#infirmiers`, `#kines`, `#sages-femmes` ou `#orthophonistes`.
-- `contact.html` : formulaire. Sans serveur, il ouvre la messagerie du visiteur avec le message prêt à envoyer à adresse-retiree.
+- `contact.html` : adresse et numéros utiles (ni formulaire ni adresse e-mail).
 - `mentions-legales.html` : mentions légales, à compléter.
 
 ## Modifier les praticiens
