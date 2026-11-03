@@ -6,7 +6,7 @@
    et rdv (lien Doctolib, Perfactive…). Un champ vide n'est simplement pas affiché ;
    sans lien de rendez-vous, le bouton mène à la page Contact.
    Autres champs facultatifs : rdvTel: true (rendez-vous uniquement par téléphone : le bouton appelle le numéro),
-   entree (accès à préciser), specialites (liste), note (phrase libre).
+   mail (adresse affichée sur la fiche), entree (accès à préciser), specialites (liste), note (phrase libre).
    ============================================================= */
 
 const ADRESSES = {
@@ -47,11 +47,11 @@ const PRATICIENS = [
   { profession: "infirmiers", nom: "BOIVERT", prenom: "Agathe", adresse: 103, jours: 1.5, badge: "Infirmière Asalée",
     titre: "Cabinet infirmier Agathe Boivert", telephone: "06 28 40 68 53", rdvTel: true },
   { profession: "infirmiers", nom: "SIRAT VERDIÉ", prenom: "Marielle", adresse: 103, horaires: "7 jours de présence par semaine",
-    telephone: "06 37 89 03 10", rdvTel: true },
+    telephone: "06 37 89 03 10", rdvTel: true, mail: "idel.toulouse31@gmail.com" },
   { profession: "infirmiers", nom: "CHARIFOU", prenom: "Virginie", adresse: 103, horaires: "7 jours de présence par semaine",
-    telephone: "06 37 89 03 10", rdvTel: true },
+    telephone: "06 37 89 03 10", rdvTel: true, mail: "idel.toulouse31@gmail.com" },
   { profession: "infirmiers", nom: "BOLDODUCK", prenom: "Malala", adresse: 103, horaires: "7 jours de présence par semaine",
-    telephone: "06 37 89 03 10", rdvTel: true },
+    telephone: "06 37 89 03 10", rdvTel: true, mail: "idel.toulouse31@gmail.com" },
   { profession: "infirmiers", nom: "GBEDO", prenom: "Mélissa", adresse: 103, jours: 5 },
   { profession: "infirmiers", nom: "SIMON LOPES", prenom: "Lucie", adresse: 103, jours: 1.5 },
   // Pharmaciens
@@ -106,6 +106,7 @@ const ICONES = {
   tel: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
   porte: '<path d="M5 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17"/><path d="M3 21h18"/><path d="M12.5 12h.01"/>',
   patte: '<circle cx="7" cy="9" r="1.7"/><circle cx="11" cy="6" r="1.7"/><circle cx="15" cy="6" r="1.7"/><circle cx="19" cy="9" r="1.7"/><path d="M8 17c0-3 2-5 5.5-5S19 14 19 17c0 2-2 3-4 2-1.5-.7-2.5-.7-4 0-2 1-3 0-3-2z"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 8 9 6 9-6"/>',
   horloge: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   calendrier: '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',
 };
@@ -146,6 +147,7 @@ function carte(p, prof) {
         <li>${icone("lieu")}<span>${ech(ADRESSES[p.adresse])}</span></li>
         ${p.entree ? `<li>${icone("porte")}<span>${ech(p.entree)}</span></li>` : ""}
         ${p.telephone ? `<li>${icone("tel")}<a href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${ech(p.telephone)}</a>${p.telNote ? `<span> (${ech(p.telNote)})</span>` : ""}</li>` : ""}
+        ${p.mail ? `<li>${icone("mail")}<a href="mailto:${ech(p.mail)}">${ech(p.mail)}</a></li>` : ""}
         ${p.horaires || p.jours ? `<li>${icone("horloge")}<span>${ech(p.horaires || presence(p.jours))}</span></li>` : ""}
       </ul>
       ${p.specialites ? `<div class="praticien-specialites"><p class="praticien-sous-titre">Prend en charge</p><ul>${p.specialites.map((x) => `<li>${ech(x)}</li>`).join("")}</ul></div>` : ""}
