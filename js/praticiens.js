@@ -29,33 +29,50 @@ const PROFESSIONS = [
     intro: "Suivi de grossesse, préparation à la naissance, suivi gynécologique de prévention et rééducation périnéale." },
   { cle: "orthophonistes", nom: "Orthophoniste", court: "Orthophoniste", icone: "parole",
     intro: "Bilans et rééducation du langage, de la parole, de la voix et de la déglutition, chez l’enfant comme chez l’adulte." },
+  { cle: "psychologues", nom: "Psychologue et neuropsychologue", court: "Psychologue", icone: "esprit",
+    intro: "Consultations de psychologie et de neuropsychologie, accompagnement des profils neuroatypiques." },
 ];
 
 const PRATICIENS = [
   // Médecins généralistes (maîtres de stage)
   { profession: "medecins", nom: "DAMASE", prenom: "Luc", adresse: 103, jours: 4, stage: true },
   { profession: "medecins", nom: "FAJADET", prenom: "Guillaume", adresse: 103, jours: 4, stage: true },
-  { profession: "medecins", nom: "JAMBU", prenom: "Christelle", adresse: 103, jours: 4, stage: true },
+  { profession: "medecins", nom: "JAMBU", prenom: "Christelle", adresse: 103, jours: 4, stage: true,
+    telephone: "05 61 49 29 29", telNote: "secrétariat", rdv: "https://www.maiia.com/medecin-generaliste/31200-toulouse/jambu-christelle", nouveauxPatients: false },
   { profession: "medecins", nom: "LATIL", prenom: "Marie", adresse: 103, jours: 3, stage: true },
   { profession: "medecins", nom: "PLARD", prenom: "Carine", adresse: 160, jours: 4, stage: true },
-  { profession: "medecins", nom: "VERGE-BRIAN", prenom: "Philippe", adresse: 103, jours: 4, stage: true },
-  // Infirmières
+  { profession: "medecins", nom: "VERGE-BRIAN", prenom: "Philippe", adresse: 103, jours: 4, stage: true,
+    telephone: "05 61 49 29 29", telNote: "secrétariat", rdv: "https://www.maiia.com/medecin-generaliste/31200-toulouse/verge-brian-philippe", nouveauxPatients: false },
+  // Infirmières (les collaboratrices passent au second plan)
   { profession: "infirmiers", nom: "BOIVERT", prenom: "Agathe", adresse: 103, jours: 1.5, badge: "Infirmière Asalée",
     titre: "Cabinet infirmier Agathe Boivert", telephone: "06 28 40 68 53", rdvTel: true },
-  { profession: "infirmiers", nom: "BOLDODUCK", prenom: "Malala", adresse: 103, jours: 5 },
-  { profession: "infirmiers", nom: "CHARIFOU", prenom: "Virginie", adresse: 103, jours: 5 },
+  { profession: "infirmiers", nom: "SIRAT VERDIÉ", prenom: "Marielle", adresse: 103, horaires: "7 jours de présence par semaine",
+    telephone: "06 37 89 03 10", rdvTel: true },
+  { profession: "infirmiers", nom: "CHARIFOU", prenom: "Virginie", adresse: 103, horaires: "7 jours de présence par semaine",
+    telephone: "06 37 89 03 10", rdvTel: true },
+  { profession: "infirmiers", nom: "BOLDODUCK", prenom: "Malala", adresse: 103, horaires: "7 jours de présence par semaine",
+    telephone: "06 37 89 03 10", rdvTel: true },
   { profession: "infirmiers", nom: "GBEDO", prenom: "Mélissa", adresse: 103, jours: 5 },
   { profession: "infirmiers", nom: "SIMON LOPES", prenom: "Lucie", adresse: 103, jours: 1.5 },
-  { profession: "infirmiers", nom: "SIRAT VERDIE", prenom: "Marielle", adresse: 103, jours: 5 },
   // Pharmaciens
   { profession: "pharmaciens", nom: "PEYROTAU", prenom: "Elisabeth", titre: "Pharmacienne", adresse: 103, jours: 5.5 },
-  { profession: "pharmaciens", nom: "LARRIEU-MANAN", prenom: "Damien", titre: "Pharmacien", adresse: 110, jours: 5 },
+  { profession: "pharmaciens", nom: "LARRIEU-MANAN", prenom: "Damien", titre: "Pharmacien · Pharmacie des 4 Chemins", adresse: 110, jours: 5,
+    telephone: "05 61 48 62 26", horaires: "Du lundi au samedi · 9h - 12h30 et 14h15 - 19h30" },
+  { profession: "pharmaciens", enseigne: "Pharmacie des Landes", titre: "Pharmacie", adresse: 164,
+    telephone: "05 34 25 84 30", horaires: "Lundi · 14h15 - 19h30 ; du mardi au samedi · 9h - 12h30 et 14h15 - 19h30" },
   // Kinésithérapeutes
-  { profession: "kines", nom: "DELGAL", prenom: "Patrick", adresse: 160, jours: 5 },
+  { profession: "kines", nom: "DELGAL", prenom: "Patrick", adresse: 160, jours: 4, telephone: "05 61 26 09 87", rdvTel: true },
   { profession: "kines", nom: "DI BIAGIO", prenom: "Gabriele", adresse: 160, jours: 5, telephone: "05 61 26 09 87", rdvTel: true },
-  { profession: "kines", nom: "LELONG", prenom: "Denis", adresse: 103, jours: 5 },
+  { profession: "kines", nom: "LELONG", prenom: "Denis", adresse: 160, jours: 4, telephone: "05 61 26 09 87", rdvTel: true },
   // Sage-femme
-  { profession: "sages-femmes", nom: "COUVEZ", prenom: "Agathe", adresse: 103, jours: 5 },
+  { profession: "sages-femmes", nom: "COUVEZ", prenom: "Agathe", adresse: 103, jours: 4,
+    telephone: "07 66 95 16 16", rdv: "https://www.doctolib.fr/sage-femme/toulouse/agathe-couvez",
+    entree: "Entrée par le 6 rue Yves Prépognot",
+    specialites: [
+      "Préparation à la naissance et à la parentalité",
+      "Suivi gynécologique de prévention et contraception",
+      "Visites à domicile dans le cadre du post-partum",
+    ] },
   // Orthophoniste
   { profession: "orthophonistes", nom: "SERVAT", prenom: "Clara", adresse: 164, jours: 4, horaires: "4 jours de présence par semaine, du lundi au jeudi",
     telephone: "07 83 95 73 34", rdv: "https://perfactive.fr/orthophoniste/toulouse/clara-servat",
@@ -69,6 +86,11 @@ const PRATICIENS = [
       "Oralité",
     ],
     note: "Clara exerce avec sa petite chienne Tahia, un bichon frisé qui ne saute pas et n’aboie pas." },
+  // Psychologue
+  { profession: "psychologues", nom: "GIACOBONE", prenom: "Camille", titre: "Psychologue et neuropsychologue", adresse: 164,
+    telephone: "07 56 83 99 51", rdv: "https://www.doctolib.fr/psychologue/toulouse/camille-giacobone",
+    entree: "Entrée du cabinet : 6 rue Yves Prépognot",
+    specialites: ["Accompagnement des profils neuroatypiques"] },
 ].map((p) => ({ telephone: "", horaires: "", rdv: "", ...p }));
 
 /* ===== Icônes (traits, couleur héritée) ===== */
@@ -79,6 +101,7 @@ const ICONES = {
   kine: '<circle cx="12" cy="4.5" r="2"/><path d="M12 7v6l-3 7M12 13l3 7M7 10h10"/>',
   bebe: '<circle cx="12" cy="8" r="4"/><path d="M6 21a6 6 0 0 1 12 0"/><path d="M10.5 8h.01M13.5 8h.01"/>',
   parole: '<path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>',
+  esprit: '<path d="M12 3a6 6 0 0 0-6 6c0 2 .9 3.2 2 4.3V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-3.7c1.1-1.1 2-2.3 2-4.3a6 6 0 0 0-6-6z"/><path d="M10 22h4M12 7v5"/>',
   lieu: '<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
   tel: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
   porte: '<path d="M5 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17"/><path d="M3 21h18"/><path d="M12.5 12h.01"/>',
@@ -94,6 +117,7 @@ const presence = (j) => `${String(j).replace(".", ",")} jour${j > 1 ? "s" : ""} 
 
 /** Rendez-vous : lien de prise de rendez-vous, appel direct (rdvTel) ou page Contact. */
 function boutonRdv(p, lienRdv) {
+  if (p.profession === "pharmaciens") return ""; // pas de rendez-vous en pharmacie
   if (p.rdvTel && p.telephone) {
     return `<a class="btn btn-contour" href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${icone("tel", 16)} Prendre rendez-vous au ${ech(p.telephone)}</a>`;
   }
@@ -101,18 +125,19 @@ function boutonRdv(p, lienRdv) {
 }
 
 function carte(p, prof) {
-  const initiales = (p.prenom[0] + p.nom[0]).toUpperCase();
-  const lienRdv = p.rdv || `contact.html?objet=rdv&praticien=${encodeURIComponent(p.prenom + " " + p.nom)}`;
+  const initiales = p.enseigne ? "Ph" : (p.prenom[0] + p.nom[0]).toUpperCase();
+  const lienRdv = p.rdv || "contact.html";
   const badges = [
     p.stage ? '<span class="badge">Maître de stage</span>' : "",
     p.badge ? `<span class="badge">${ech(p.badge)}</span>` : "",
+    p.nouveauxPatients === false ? '<span class="badge badge-alerte">Ne prend plus de nouveaux patients</span>' : "",
   ].join("");
   return `
     <article class="praticien" data-profession="${prof.cle}">
       <div class="praticien-tete">
         <div class="avatar" aria-hidden="true">${initiales}</div>
         <div>
-          <h3 class="praticien-nom"><span class="nom">${ech(p.nom)}</span> ${ech(p.prenom)}</h3>
+          <h3 class="praticien-nom">${p.enseigne ? ech(p.enseigne) : `<span class="nom">${ech(p.nom)}</span> ${ech(p.prenom)}`}</h3>
           <p class="praticien-metier">${ech(p.titre || prof.court.replace(/s$/, ""))}</p>
         </div>
       </div>
@@ -120,8 +145,8 @@ function carte(p, prof) {
       <ul class="praticien-infos">
         <li>${icone("lieu")}<span>${ech(ADRESSES[p.adresse])}</span></li>
         ${p.entree ? `<li>${icone("porte")}<span>${ech(p.entree)}</span></li>` : ""}
-        ${p.telephone ? `<li>${icone("tel")}<a href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${ech(p.telephone)}</a></li>` : ""}
-        <li>${icone("horloge")}<span>${ech(p.horaires || presence(p.jours))}</span></li>
+        ${p.telephone ? `<li>${icone("tel")}<a href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${ech(p.telephone)}</a>${p.telNote ? `<span> (${ech(p.telNote)})</span>` : ""}</li>` : ""}
+        ${p.horaires || p.jours ? `<li>${icone("horloge")}<span>${ech(p.horaires || presence(p.jours))}</span></li>` : ""}
       </ul>
       ${p.specialites ? `<div class="praticien-specialites"><p class="praticien-sous-titre">Prend en charge</p><ul>${p.specialites.map((x) => `<li>${ech(x)}</li>`).join("")}</ul></div>` : ""}
       ${p.note ? `<p class="praticien-note">${icone("patte", 16)}<span>${ech(p.note)}</span></p>` : ""}
