@@ -21,8 +21,6 @@ const PROFESSIONS = [
     intro: "Consultations de médecine générale, suivi au long cours, prévention. Nos médecins accueillent aussi des internes en formation." },
   { cle: "infirmiers", nom: "Infirmières diplômées d’État libérales", court: "Infirmières", icone: "seringue",
     intro: "Soins à domicile et au cabinet : pansements, injections, prises de sang, suivi des traitements." },
-  { cle: "pharmaciens", nom: "Pharmaciens", court: "Pharmaciens", icone: "pharmacie",
-    intro: "Délivrance des médicaments, conseils, vaccinations et accompagnement des traitements, en lien avec les médecins de la maison de santé." },
   { cle: "kines", nom: "Masseurs-kinésithérapeutes", court: "Kinés", icone: "kine",
     intro: "Rééducation, kinésithérapie respiratoire, prise en charge des douleurs et des suites de blessures." },
   { cle: "sages-femmes", nom: "Sage-femme", court: "Sage-femme", icone: "bebe",
@@ -54,11 +52,6 @@ const PRATICIENS = [
     telephone: "06 37 89 03 10", rdvTel: true, mail: "idel.toulouse31@gmail.com" },
   { profession: "infirmiers", nom: "GBEDO", prenom: "Mélissa", adresse: 103, jours: 5 },
   { profession: "infirmiers", nom: "SIMON LOPES", prenom: "Lucie", adresse: 103, jours: 1.5 },
-  // Pharmaciens
-  { profession: "pharmaciens", enseigne: "Pharmacie des 4 Chemins", titre: "Pharmacie", adresse: 110,
-    telephone: "05 61 48 62 26", horaires: "Du lundi au samedi · 9h - 12h30 et 14h15 - 19h30" },
-  { profession: "pharmaciens", enseigne: "Pharmacie des Landes", titre: "Pharmacie", adresse: 164,
-    telephone: "05 34 25 84 30", horaires: "Lundi · 14h15 - 19h30 ; du mardi au samedi · 9h - 12h30 et 14h15 - 19h30" },
   // Kinésithérapeutes
   { profession: "kines", nom: "DELGAL", prenom: "Patrick", adresse: 160, jours: 4, telephone: "05 61 26 09 87", rdvTel: true },
   { profession: "kines", nom: "DI BIAGIO", prenom: "Gabriele", adresse: 160, jours: 5, telephone: "05 61 26 09 87", rdvTel: true },
@@ -96,7 +89,6 @@ const PRATICIENS = [
 const ICONES = {
   stetho: '<path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v2a5 5 0 0 0 10 0v-3"/><circle cx="21" cy="11" r="2"/>',
   seringue: '<path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3a2.4 2.4 0 0 1-3.4 0l-.6-.6a2.4 2.4 0 0 1 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/>',
-  pharmacie: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 7v10M7 12h10"/>',
   kine: '<circle cx="12" cy="4.5" r="2"/><path d="M12 7v6l-3 7M12 13l3 7M7 10h10"/>',
   bebe: '<circle cx="12" cy="8" r="4"/><path d="M6 21a6 6 0 0 1 12 0"/><path d="M10.5 8h.01M13.5 8h.01"/>',
   parole: '<path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>',
@@ -117,7 +109,6 @@ const presence = (j) => `${String(j).replace(".", ",")} jour${j > 1 ? "s" : ""} 
 
 /** Rendez-vous : lien de prise de rendez-vous, appel direct (rdvTel) ou page Contact. */
 function boutonRdv(p, lienRdv) {
-  if (p.profession === "pharmaciens") return ""; // pas de rendez-vous en pharmacie
   if (p.rdvTel && p.telephone) {
     return `<a class="btn btn-contour" href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${icone("tel", 16)} Prendre rendez-vous au ${ech(p.telephone)}</a>`;
   }
@@ -125,7 +116,7 @@ function boutonRdv(p, lienRdv) {
 }
 
 function carte(p, prof) {
-  const initiales = p.enseigne ? "Ph" : (p.prenom[0] + p.nom[0]).toUpperCase();
+  const initiales = (p.prenom[0] + p.nom[0]).toUpperCase();
   const lienRdv = p.rdv || "contact.html";
   const badges = [
     p.stage ? '<span class="badge">Maître de stage</span>' : "",
@@ -137,7 +128,7 @@ function carte(p, prof) {
       <div class="praticien-tete">
         <div class="avatar" aria-hidden="true">${initiales}</div>
         <div>
-          <h3 class="praticien-nom">${p.enseigne ? ech(p.enseigne) : `<span class="nom">${ech(p.nom)}</span> ${ech(p.prenom)}`}</h3>
+          <h3 class="praticien-nom"><span class="nom">${ech(p.nom)}</span> ${ech(p.prenom)}</h3>
           <p class="praticien-metier">${ech(p.titre || prof.court.replace(/s$/, ""))}</p>
         </div>
       </div>
