@@ -131,7 +131,7 @@ function carte(p, prof) {
   const badges = [
     p.stage ? '<span class="badge">Maître de stage</span>' : "",
     p.badge ? `<span class="badge">${ech(p.badge)}</span>` : "",
-    p.nouveauxPatients === false ? '<span class="badge badge-alerte">Ne prend plus de nouveaux patients</span>' : "",
+    p.nouveauxPatients === false ? '<span class="badge badge-alerte">Plus de nouveaux patients</span>' : "",
   ].join("");
   return `
     <article class="praticien" data-profession="${prof.cle}">
@@ -146,7 +146,7 @@ function carte(p, prof) {
       <ul class="praticien-infos">
         <li>${icone("lieu")}<span>${ech(ADRESSES[p.adresse])}</span></li>
         ${p.entree ? `<li>${icone("porte")}<span>${ech(p.entree)}</span></li>` : ""}
-        ${p.telephone ? `<li>${icone("tel")}<a href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${ech(p.telephone)}</a>${p.telNote ? `<span> (${ech(p.telNote)})</span>` : ""}</li>` : ""}
+        ${p.telephone ? `<li>${icone("tel")}<span><a class="tel-num" href="tel:${ech(p.telephone.replace(/\s/g, ""))}">${ech(p.telephone)}</a>${p.telNote ? ` (${ech(p.telNote)})` : ""}</span></li>` : ""}
         ${p.mail ? `<li>${icone("mail")}<a href="mailto:${ech(p.mail)}">${ech(p.mail)}</a></li>` : ""}
         ${p.horaires || p.jours ? `<li>${icone("horloge")}<span>${ech(p.horaires || presence(p.jours))}</span></li>` : ""}
       </ul>
