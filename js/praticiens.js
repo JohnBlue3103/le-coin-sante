@@ -55,7 +55,6 @@ const PRATICIENS = [
   { profession: "infirmiers", nom: "GBEDO", prenom: "Mélissa", adresse: 103, jours: 5 },
   { profession: "infirmiers", nom: "SIMON LOPES", prenom: "Lucie", adresse: 103, jours: 1.5 },
   // Pharmaciens
-  { profession: "pharmaciens", nom: "PEYROTAU", prenom: "Elisabeth", titre: "Pharmacienne", adresse: 103, jours: 5.5 },
   { profession: "pharmaciens", enseigne: "Pharmacie des 4 Chemins", titre: "Pharmacie", adresse: 110,
     telephone: "05 61 48 62 26", horaires: "Du lundi au samedi · 9h - 12h30 et 14h15 - 19h30" },
   { profession: "pharmaciens", enseigne: "Pharmacie des Landes", titre: "Pharmacie", adresse: 164,
@@ -87,7 +86,7 @@ const PRATICIENS = [
     ],
     note: "Clara exerce avec sa petite chienne Tahia, un bichon frisé qui ne saute pas et n’aboie pas." },
   // Psychologue
-  { profession: "psychologues", nom: "GIACOBONE", prenom: "Camille", titre: "Psychologue et neuropsychologue", adresse: 164,
+  { profession: "psychologues", nom: "GIACOBONE", prenom: "Camille", titre: "Psychologue et neuropsychologue", adresse: 103,
     telephone: "07 56 83 99 51", rdv: "https://www.doctolib.fr/psychologue/toulouse/camille-giacobone",
     entree: "Entrée du cabinet : 6 rue Yves Prépognot",
     specialites: ["Accompagnement des profils neuroatypiques"] },
