@@ -56,7 +56,7 @@ const PRATICIENS = [
   { profession: "infirmiers", nom: "SIMON LOPES", prenom: "Lucie", adresse: 103, jours: 1.5 },
   // Pharmaciens
   { profession: "pharmaciens", nom: "PEYROTAU", prenom: "Elisabeth", titre: "Pharmacienne", adresse: 103, jours: 5.5 },
-  { profession: "pharmaciens", nom: "LARRIEU-MANAN", prenom: "Damien", titre: "Pharmacien · Pharmacie des 4 Chemins", adresse: 110, jours: 5,
+  { profession: "pharmaciens", enseigne: "Pharmacie des 4 Chemins", titre: "Pharmacie", adresse: 110,
     telephone: "05 61 48 62 26", horaires: "Du lundi au samedi · 9h - 12h30 et 14h15 - 19h30" },
   { profession: "pharmaciens", enseigne: "Pharmacie des Landes", titre: "Pharmacie", adresse: 164,
     telephone: "05 34 25 84 30", horaires: "Lundi · 14h15 - 19h30 ; du mardi au samedi · 9h - 12h30 et 14h15 - 19h30" },
